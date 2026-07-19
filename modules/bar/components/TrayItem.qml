@@ -41,23 +41,29 @@ Item {
                     root.modelData.secondaryActivate();
                     break;
                 case Qt.RightButton:
-                    if (root.modelData.hasMenu)
-                        menuAnchor.open();
+                if (root.modelData.hasMenu) {
+                  if (menuLoader.item) {
+                    menuLoader.item.open();
+                  } else {
+                    menuLoader.active = true;
+                  }
+                }
                     break;
                 }
             }
         }
     }
 
-    // Menu de contexto (clique direito). A API de QsMenuAnchor pode variar
-    // um pouco entre versões do Quickshell — se `Edges` não resolver,
-    // troque por `anchor.rect` manual usando icon.mapToItem().
-    QsMenuAnchor {
-        id: menuAnchor
+    Loader {
+      id: menuLoader
+      active: false
 
+      sourceComponent: QsMenuAnchor {
         menu: root.modelData.menu
         anchor.item: icon
         anchor.edges: Edges.Bottom
         anchor.gravity: Edges.Bottom
-    }
+      }
+      onLoaded: item.open()
+    }    
 }

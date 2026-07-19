@@ -172,9 +172,9 @@ PanelWindow {
       id: centerSection
       anchors.centerIn: parent
       
-      Loader {
-        source: "./components/Taskbar.qml"
-      }
+    ///  Loader {
+    //    source: "./components/"
+    //  }
 
     }     
 }
