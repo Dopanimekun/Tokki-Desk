@@ -111,7 +111,9 @@ PanelWindow {
                     anchors.fill: parent
 
                     onClicked: {
-                      Hyprland.dispatch("workspace " + workspaceId)
+                      // Hyprland.dispatch("workspace " + workspaceId)
+                      // Hyprland.dispatch(`workspace ${workspace.name}`)
+                      Hyprland.dispatch('hl.dsp.focus({ workspace = ' + workspaceId + ' })')
                     }
                   }
                 }
